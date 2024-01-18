@@ -1,6 +1,4 @@
 #include <stdio.h>
-#include <stdint.h>
-#include <stdbool.h>
 #include <stdlib.h>
 
 // Function to add two integers
@@ -8,8 +6,9 @@ int add(int a, int b)
 {
     return a + b;
 }
+
 // Function to add an array of integers
-int sumArray(int *arr, size_t size)
+int sumArray(const int *arr, size_t size)
 {
     int sum = 0;
     for (size_t i = 0; i < size; ++i)
@@ -20,7 +19,7 @@ int sumArray(int *arr, size_t size)
 }
 
 // Function to print an array of integers
-void printArray(int *arr, size_t size)
+void printArray(const int *arr, size_t size)
 {
     printf("[ ");
     for (size_t i = 0; i < size; ++i)
@@ -29,6 +28,7 @@ void printArray(int *arr, size_t size)
     }
     printf("]\n");
 }
+
 // Function to dynamically allocate and initialize an array
 int *initializeArray(size_t size)
 {
@@ -41,11 +41,13 @@ int *initializeArray(size_t size)
 
     for (size_t i = 0; i < size; ++i)
     {
-        arr[i] = i * 2; // Initialize with some values
+        arr[i] = i * 2;
     }
     return arr;
 }
-int main()
+
+// Function to perform example usage
+void exampleUsage()
 {
     // Example usage of the add function
     int result = add(3, 4);
@@ -62,6 +64,12 @@ int main()
 
     // Cleanup dynamically allocated memory
     free(dynamicArray);
+}
+
+int main()
+{
+    // Call the example usage function
+    exampleUsage();
 
     return 0;
 }

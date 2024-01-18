@@ -8,7 +8,6 @@ int add(int a, int b)
 {
     return a + b;
 }
-
 // Function to add an array of integers
 int sumArray(int *arr, size_t size)
 {
@@ -30,7 +29,6 @@ void printArray(int *arr, size_t size)
     }
     printf("]\n");
 }
-
 // Function to dynamically allocate and initialize an array
 int *initializeArray(size_t size)
 {
@@ -47,7 +45,6 @@ int *initializeArray(size_t size)
     }
     return arr;
 }
-
 int main()
 {
     // Example usage of the add function

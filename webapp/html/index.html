@@ -27,12 +27,8 @@
 
         WebAssembly.instantiateStreaming(fetch('build/main.wasm'), importObject).then((result) => {
             const exports = result.instance.exports;
-
-            // Use the exported function from the WebAssembly module
             const addResult = exports.add(3, 4); // Assuming the function in main.c is named 'add'
             console.log('Result of add function:', addResult);
-
-            // You can add more interactions here if needed
         });
     </script>
 </body>

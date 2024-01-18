@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebAssembly Example</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+    <h1>WebAssembly Example</h1>
+    <script>
+        // Load and instantiate the WebAssembly module
+        const importObject = {
+            env: {
+                memoryBase: 0,
+                tableBase: 0,
+                memory: new WebAssembly.Memory({ initial: 256, maximum: 256 }),
+                table: new WebAssembly.Table({ initial: 0, maximum: 0, element: 'anyfunc' }),
+            },
+            wasi_snapshot_preview1: {
+                fd_write: function () { },
+                proc_exit: function () { },
+            },
+        };
+
+        WebAssembly.instantiateStreaming(fetch('build/main.wasm'), importObject).then((result) => {
+            const exports = result.instance.exports;
+
+            // Use the exported function from the WebAssembly module
+            const addResult = exports.add(3, 4); // Assuming the function in main.c is named 'add'
+            console.log('Result of add function:', addResult);
+
+            // You can add more interactions here if needed
+        });
+    </script>
+</body>
+
+</html>
